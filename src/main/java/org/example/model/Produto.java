@@ -2,25 +2,29 @@ package org.example.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-public class Produto {
-    public Integer id;
+public class Produto extends EntityId {
+    private String nome;
+    private String descricao;
+    private Double precoVenda;
+    private Double precoCompra;
+    private LocalDate dataValidade;
+    private LocalDate dataPrazo;
+    private Status status;
 
-    public String nome;
-    public String descricao;
-    public Double precoVenda;
-    public Double precoCompra;
-    public LocalDate dataValidade;
-    public LocalDate dataPrazo;
-    public Status status;
+    public void setPrecoVenda(Double precoVenda) {
+        this.precoVenda = precoVenda;
+        if (calculaMargemLucro() < 20) {
+            System.out.println("Margem de lucro deve ser superior a 20%");
+        }
+    }
 
     public Double calculaMargemLucro() {
         double lucro = precoVenda - precoCompra;
-        return (lucro/precoVenda)*100;
+        return (lucro / precoVenda) * 100;
     }
 }
