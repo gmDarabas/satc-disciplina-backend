@@ -8,4 +8,9 @@ import lombok.Setter;
 public class Fornecedor extends Pessoa {
     private String cnpj;
     private String inscricaoEstadual;
+
+    @Override
+    public String getDocumentoPrincipal() {
+        return getCnpj();
+    }
 }

@@ -10,4 +10,6 @@ public abstract class Pessoa extends EntityId {
     private String telefone;
     private String endereco;
     private String email;
+
+    public abstract String getDocumentoPrincipal();
 }

@@ -10,22 +10,23 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Venda extends EntityId implements OperacaoFinanceira {
-    private LocalDate dataVenda;
-    private FormaPagamento formaPagamento;
-    private String observacao;
+public class Locacao extends EntityId implements OperacaoFinanceira {
+    private LocalDate dataLocacao;
+    private LocalDate dataDevolucao;
     private Cliente cliente;
-    private List<ItemVenda> itens = new ArrayList<>();
+    private String endereco;
+    private String observacao;
+    private List<ItemLocacao> itens = new ArrayList<>();
 
     @Override
     public LocalDate getDataOperacao() {
-        return dataVenda;
+        return dataLocacao;
     }
 
     @Override
     public Double getValorTotalOperacao() {
         return getItens().stream()
-                .mapToDouble(ItemVenda::getValorCalculado)
+                .mapToDouble(ItemLocacao::getValorCalculado)
                 .sum();
     }
 
@@ -34,7 +35,7 @@ public class Venda extends EntityId implements OperacaoFinanceira {
         return TipoOperacao.CREDITO;
     }
 
-    public void addItemVenda(ItemVenda item) {
+    public void addItemLocacao(ItemLocacao item) {
         itens.add(item);
     }
 }

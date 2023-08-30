@@ -8,4 +8,9 @@ import lombok.Setter;
 public class Cliente extends Pessoa {
     private String cpf;
     private String rg;
+
+    @Override
+    public String getDocumentoPrincipal() {
+        return getCpf();
+    }
 }
